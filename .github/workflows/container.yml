@@ -3,17 +3,20 @@ name: deploy-container
 on:
   push:
     branches:
-     - main
-     paths:
-     - 'container/**'
-    
+      - master
+    paths:
+      - "container/**"
+
+defaults:
+  run:
+    working-directory: packages/container
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies
       - run: npm install
       - run: npm run build
 
